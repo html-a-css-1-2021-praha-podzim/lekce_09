@@ -18,11 +18,21 @@ https://github.com/tvorimweb-2021-praha-jaro/lekce_09
 - Zopakovat základní CSS selektory a představit další pokročilejší
 - Naučit se práci se základními CSS pseudoelementy
 
+---
+
 # Způsoby připojení CSS
 
 Zatím jsme se seznámili s připojením CSS jako externího souboru pomocí značky `link`. Je to asi nejběžnější způsob a v mnoha ohledech nejvýhodnější, ale je dobré znát i ostatní možnosti, protože i ty mají své použití. A přinejmenším se s nimi můžete setkat na jiných projektech.
 
-1. externí soubor nebo více souborů CSS pomocí tagu `link`
+note:
+
+- předvedeme si v kódu
+
+---
+
+## Způsoby připojení CSS - Externí soubor
+
+1. Externí soubor nebo více souborů CSS pomocí tagu `link`
    Známe již celkem důvěrně, pouze poznamenáme, že lze takto připojit i více souborů CSS (jeden pro obecné styly písma a barev, další pro konkrétní stránku), aby se zbytečně nestahovaly styly, které se na stránce nepoužijí.
 
    ```html
@@ -30,7 +40,11 @@ Zatím jsme se seznámili s připojením CSS jako externího souboru pomocí zna
    <link rel="stylesheet" href="/styles/contact.css" />
    ```
 
-2. přímo v HTML prostřednictvím značky `style`
+---
+
+## Způsoby připojení CSS - Přímo v HTML
+
+2. Přímo v HTML prostřednictvím značky `style`
    Párová značka `style` vlastně vyznačí místo v HTML dokumentu, kam lze psát CSS. Takový to blok CSS kódu lze umístit kamkoli do dokumentu, včetně prvku `head`, což je nejběžnější užití toho zápisu. Zapisují se do něho například styly, které chceme mít na stránce vykresleny okamžitě (bez nutnosti čekat na načtení velkého souboru CSS), ale to již spíše zastaralý způsob.
 
    ```html
@@ -46,7 +60,11 @@ Zatím jsme se seznámili s připojením CSS jako externího souboru pomocí zna
    </style>
    ```
 
-3. tzv. inline styly, přímo do otvírací značky prostřednictvím atributu `style`
+---
+
+## Způsoby připojení CSS - Inline styly
+
+3. Tzv. inline styly, přímo do otvírací značky prostřednictvím atributu `style`
    Někdy nemáme možnost zasáhnout do kódu jinak než tímto způsobem. Nejčastěji jsme k tomu nuceni při úpravě obsahu stránky přes nějaký redakční systém. Dále se tento způsob využívá při tvorbě HTML e-mailů.
 
    ```html
@@ -55,14 +73,14 @@ Zatím jsme se seznámili s připojením CSS jako externího souboru pomocí zna
    </p>
    ```
 
-4. pomocí jazyka JavaScript
+---
+
+## Způsoby připojení CSS - Pomocí jazyka JavaScript
+
+4. Pomocí jazyka JavaScript
    Uvádíme pouze pro úplnost, protože s JavaScriptem jsme se dosud nesetkali.
 
 Pozor, poslední dva způsoby nemohou využít plnou škálu možnosti CSS (například nezapíšete stavové styly pro `:hover` či `:focus`).
-
-note:
-
-- předvedeme si v kódu
 
 ---
 
@@ -113,7 +131,7 @@ h4 {
 
 ## Kontextový selektor
 
-- vyjadřuje strukturu HTML
+Vyjadřuje strukturu HTML:
 
 ```css
 footer p {
@@ -125,13 +143,13 @@ note:
 
 - odstavce uvnitř patičky
 - selektory čteme zprava doleva
-- footer > p
+- `footer > p`
 
 ---
 
 ## Třídy
 
-- název třídy (začíná tečkou, aby se odlišil od názvu prvku)
+Název třídy (začíná tečkou, aby se odlišil od názvu prvku):
 
 ```css
 /* prvky s třídou .perex vypiš kurzívou */
@@ -167,7 +185,7 @@ note:
 
 ## Pomocí atributů
 
-- prvek s&nbsp;konkrétním atributem
+Prvek s&nbsp;konkrétním atributem:
 
 ```css
 /* prvkům (tedy obrázkům) s atributem `alt` přidej spodní ohraničení */
@@ -180,7 +198,7 @@ note:
 
 ## Prvek s určitou hodnotou atributu
 
-- prvek s&nbsp;konkrétní hodnotou atributu
+Prvek s&nbsp;konkrétní hodnotou atributu:
 
 ```css
 /* obrázky s prázdným atributem `alt` orámuj karmínově */
@@ -197,13 +215,13 @@ note:
 
 # Pseudotřídy
 
-`:first-child`, `:last-child`, `:nth-child()`, `:nth-of-type()`, ...
+`:hover`, `:focus`, `:first-child`, `:last-child`, `:nth-child()`, `:nth-of-type()`, ...
 
 ---
 
 ## Pseudotřídy - `:first-child`, `:last-child`
 
-```css=
+```css
 /* První potomek elementu */
 div:first-child {}
 
@@ -215,7 +233,7 @@ div:last-child {}
 
 ## Pseudotřídy - `:nth-child`
 
-```css=
+```css
 /* pravidlo platí pro druhou položku seznamu */
 li:nth-child(2) {}
 
@@ -241,13 +259,17 @@ li:nth-child(3n + 2) {}
 
 # Pseudoelementy - `::before`, `::after`
 
-```css=
-div::before { content: 'Před'; }
+```css
+div::before {
+  content: "Před";
+}
 
-div::after { content: 'Za'; }
+div::after {
+  content: "Za";
+}
 ```
 
-```htmlmixed=
+```htmlmixed
 <div>
   Před
   <!-- Vše ostatní co bylo v divu předtím -->
@@ -257,40 +279,54 @@ div::after { content: 'Za'; }
 
 ---
 
-# Pseudoelementy - Co můžu použít v `content`?
+# Pseudoelementy - `content`
 
-```css=
-div::before { content: 'Text'; }
+Co všechno můžu použít v `content`:
 
-div::before { content: 'url(/cesta/k/obrazek.jpg)'; }
+```css
+div::before {
+  content: "Text";
+}
+
+div::before {
+  content: "url(/cesta/k/obrazek.jpg)";
+}
 
 /* Nic, pro obrázková pozadí*/
-div::before { content: ''; }
+div::before {
+  content: "";
+}
 
-div::before { content: "<h1>Toto nejde!</h1>"; }
+div::before {
+  content: "<h1>Toto nejde!</h1>";
+}
 ```
+
+---
 
 # Dědičnost
 
-> Dědičnost v CSS je způsob, jakým se dostávají hodnoty vlastností od rodičovských elementů k potomkům.
+Dědičnost v CSS je způsob, jakým se dostávají hodnoty vlastností od rodičovských elementů k potomkům.
 
 <small>Martin Michálek, [Vzhůru Dolů](https://www.vzhurudolu.cz/prirucka/css-dedicnost)</small>
 
 note:
 
 - platí jen pro menšinu vlastností
-- vlastnosti týkající se textu (začínají na `font-`)
-- Máchal: táta českých frontendistů
-- od něj jsem čerpal (kopíroval) pro další výklad
+  - např. vlastnosti týkající se textu (začínají na `font-`)
 - ve sporu s kaskádou vždy prohraje, kaskáda je silnější
+- Máchal: táta českých frontendistů
+  - od něj jsem čerpal (kopíroval) pro další výklad
 
 ---
 
 # Kaskáda
 
-note:
+**3 základní principy**:
 
-- 3 principy: pořadí, specificita, důležitost
+1. pořadí
+2. specificita
+3. důležitost
 
 ---
 
@@ -298,22 +334,20 @@ note:
 
 1. Pořadí rozhoduje a poslední vyhraje
 
-```css=
-
+```css
 p {
-    color: crimson;
+  color: crimson;
 }
 
 p {
-    color: cornflowerblue;
+  color: cornflowerblue;
 }
-
 ```
 
 note:
 
-- Kdo se směje naposled, ten se směje nejlíp.
-- Ale to je spíš vzácnější případ.
+- kdo se směje naposled, ten se směje nejlíp
+- ale to je spíš vzácnější případ
 
 ---
 
@@ -321,23 +355,20 @@ note:
 
 2. Selektor s vyšší váhou (specifitou) vyhrává.
 
-```css=
-
+```css
 section p {
-    color: crimson;
+  color: crimson;
 }
 
 p {
-    color: cornflowerblue;
+  color: cornflowerblue;
 }
-
 ```
 
 note:
 
 - čím konkrétněji je popsán prvek, tím má pravidlo vyšší váhu
 - čím konkrétněji ~ čím vyšší specificita
-- ukážeme si ve cvičení 3
 
 ---
 
@@ -347,17 +378,27 @@ Specificita je hodnota, která vyjadřuje přesnost zacílení daného selektoru
 
 **Pamatuj si, že pravidlo se vyšší specificitou se uplatní bez ohledu na pořadí v&nbsp;kódu.** Teprve střetnou-li se stejně „silná“ pravidla, vítězí to, které je ve stylopise později.
 
-Porovnání se skutečným světem:
+_Užitečné odkazy_:
 
-**vyndej** | cokoli | svetr | svetr ze skříně | její svetr ze skříně | její vytahaný svetr ze skříně\*
+- [Specificity calculator](https://specificity.keegan.st)
+- [Specificity with Fish](https://specifishity.com)
+- [CSS specificity Wars](https://stuffandnonsense.co.uk/archives/css_specificity_wars.html)
 
-**selektor** | `*` | `li` | `ul li` | `ul .nav-item` | `.nav > .nav-item`
+---
+
+## Specificita - Porovnání se skutečným světem:
+
+- **vyndej** | cokoli | svetr | svetr ze skříně | její svetr ze skříně | její vytahaný svetr ze skříně\*
+
+- **selektor** | `*` | `li` | `ul li` | `ul .nav-item` | `.nav > .nav-item`
 
 <small>\* Jedná se o příměr, ber s&nbsp;rezervou</small>
 
-## Zanoření prvku
+---
 
-- naznačíme mezerou
+## Specificita - Zanoření prvku
+
+Naznačíme mezerou:
 
 ```css
 /* seznamu v navigaci (neplatí pro ostatní seznamy) odeber odrážky */
@@ -373,9 +414,11 @@ nav ul {
 }
 ```
 
-## Přímý potomek
+---
 
-- předchozí pravdla lze zpřesnit (dát jim vyšší specificitu)
+## Specificita - Přímý potomek
+
+Předchozí pravdla lze zpřesnit (dát jim vyšší specificitu):
 
 ```css
 /* odrážky se odeberou jen na první úrovni navigace odrážek, na zanořený seznam se pravidlo nevztahuje */
@@ -402,7 +445,9 @@ nav > ul {
 </nav>
 ```
 
-Jiný příklad
+---
+
+# Specificita - Další příklady
 
 ```css
 /* odkazy uvnitř prvků s třídou .perex, které jsou jeho přímým potomkem vypiš kaštanovou */
@@ -420,9 +465,12 @@ Jiný příklad
 </div>
 ```
 
-## Vícenásobné třídy nám umožní přesnější zacílení
+---
 
-- používat s&nbsp;rozumem, pokud nás prosazení pravidla nutí řadit více než tři třídy, bude vhodnější přidat třídu novou
+## Specificita - Vícenásobné třídy
+
+- Vícenásobné třídy nám umožní přesnější zacílení
+- Používat s&nbsp;rozumem, pokud nás prosazení pravidla nutí řadit více než tři třídy, bude vhodnější přidat třídu novou
 
 ```css
 /* .perex, který má současně třídu .main vykresli se slonovinovým pozadím */
@@ -432,21 +480,17 @@ Jiný příklad
 }
 ```
 
-- předchozí zápis podbarví tento prvek:
+Předchozí zápis podbarví tento prvek:
 
 ```html
 <p class="perex main">Úvodní odstavec nějakého článku…</p>
 ```
 
-- [Specificity calculator](https://specificity.keegan.st)
-- [Specificity with Fish](https://specifishity.com)
-- [CSS specificity Wars](https://stuffandnonsense.co.uk/archives/css_specificity_wars.html)
-
 ---
 
-## Kaskáda - důležitost
+## Kaskáda - Důležitost
 
-3. pravidlo označené jako důležité, vyhraje vždy
+3. Pravidlo označené jako důležité, vyhraje vždy:
 
 ```css
 p {
@@ -456,13 +500,13 @@ p {
 
 note:
 
-- atomový kufřík, když jiné možnosti selžou: snažte se nepoužívat
-- hrozí, že se uškvaříte v importantovém pekle
+- atomový kufřík, když jiné možnosti selžou => snažte se nepoužívat
+  - hrozí, že se uškvaříte v importantovém pekle
 - Dá se přebít !important?
-- 2 případy, kdy lze použít
+- 2 případy, kdy lze použít:
   1. potřebuji přebít CSS 3. strany (plugin), do nějž nemohu zasáhnout, případně nastavuje styly pomocí JS (inline styly => nejvyšší specificita)
   2. zdědila jsem prastaré a spletité CSS, které by nejlíp bylo zahodit a napsat znova, ale na to není čas=peníze
-  3. Tzv. utility třídy, viz Tachyons
+- tzv. utility třídy, viz Tachyons
 
 ---
 
@@ -470,5 +514,6 @@ note:
 
 - Zadaný v classrooms
 - Ukážeme si co je třeba
+- https://classroom.github.com/a/O7I0Is7n
 
 ![Island](https://raw.githubusercontent.com/tvorimweb-2020-praha-podzim/du_06_island/master/zadani/vysledek-3-pc.jpg)
