@@ -1,0 +1,39 @@
+/* moderní box model */
+html {
+  box-sizing: border-box;
+}
+
+*,
+::before,
+::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+button {
+  background-color: blue;
+  color: aliceblue;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  font-size: 1.5rem;
+}
+
+.rodic {
+  border: 2px solid blueviolet;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.pseudo {
+  padding-bottom: 20rem;
+}
+
+/* ukázka */
