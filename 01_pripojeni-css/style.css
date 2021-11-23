@@ -17,3 +17,7 @@ h1 {
   text-align: center;
   background-color: hsla(200, 100%, 50%, 0.5);
 }
+
+p {
+  color: green;
+}

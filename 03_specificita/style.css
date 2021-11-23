@@ -1,1 +1,11 @@
+.card-body {
+  background-color: lightpink;
+}
 
+div.card-body {
+  padding: 2rem;
+}
+
+div.card-body a.btn {
+  background-color: crimson;
+}
